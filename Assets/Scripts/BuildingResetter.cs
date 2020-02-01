@@ -31,7 +31,7 @@ public class BuildingResetter : MonoBehaviour
         
 
     }
-    public void rebuild()
+    public void Rebuild()
     {
         
         print("called");
@@ -70,17 +70,10 @@ public class BuildingResetter : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.Space))
-        {
-            lerpValue += Time.deltaTime * speed;
-            
-            rebuild();
-            //transform.position = Vector3.Lerp(transform.position, position, lerpValue);
-            //transform.rotation = Quaternion.Lerp(transform.rotation, rotateinit, lerpValue);
+        {            
+            Rebuild();
         }
-        else
-        {
-            lerpValue = 0;
-        }
+
     }
 
 

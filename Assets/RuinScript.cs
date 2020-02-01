@@ -14,10 +14,10 @@ public class RuinScript : MonoBehaviour
     float TotalDestructionTime;
    // bool Destroy;
 
-    public string PSP1;
-    public string PSP2;
-    public string PSP3;
-    public string PSP4;
+    public static string PSP1 = "Interact_P1";
+    public static string PSP2 = "Interact_P2";
+    public static string PSP3 = "Interact_P3";
+    public static string PSP4 = "Interact_P4";
     public int GridX;
     public int GridY;
 
@@ -27,8 +27,7 @@ public class RuinScript : MonoBehaviour
     Players CurrentPlayer;
     
     //players can build and break separately
-
-
+    
 
     void Start()
     {
@@ -67,13 +66,10 @@ public class RuinScript : MonoBehaviour
 
             //BUILD!!!!!!!!!!
             RebuildTime = RebuildTime - Time.deltaTime;
-            Debug.Log("rebuilding");
             if (RebuildTime<=0)
             {
                 BeingRebuilt = false;                   //once the rebuilt time is depleted, its false
                 RebuildTime = TotalReBuiltTime;         //resets the rebuild time
-
-                Debug.Log("REBUILT");
             }
         }
 
@@ -88,13 +84,11 @@ public class RuinScript : MonoBehaviour
             if (player == Players.NONE)
             {
                 DestructionTime = DestructionTime- Time.deltaTime;
-                Debug.Log("destroying");
                 if (DestructionTime<=0)
                 {
                     BeingRebuilt = false;
                     DestructionTime = TotalDestructionTime;         //resets the rebuild time
 
-                    Debug.Log("DESTROYED");
                 }
 
 
@@ -111,7 +105,7 @@ public class RuinScript : MonoBehaviour
         {
             if (player != CurrentPlayer)
             {
-                if (Input.GetButton(PSP1) || Input.GetButton(PSP2) || Input.GetButton(PSP3) || Input.GetButton(PSP4))      //X BUTTON
+                if (Input.GetButtonDown(PSP1) || Input.GetButtonDown(PSP2) || Input.GetButtonDown(PSP3) || Input.GetButtonDown(PSP4))      //X BUTTON
                 {
 
                     //DESTROY!!!!!!!!!!!!!

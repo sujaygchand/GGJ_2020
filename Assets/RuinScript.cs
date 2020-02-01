@@ -165,7 +165,7 @@ public class RuinScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        var player = other.GetComponent<movement>();
+        var player = other.GetComponent<Movement>();
 
         if (!player)
             return;

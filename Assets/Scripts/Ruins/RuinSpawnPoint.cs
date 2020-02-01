@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RuinSpawnPoint : MonoBehaviour
 {
+    public bool isAvaliable = false;
+
+    public int gridX;
+    public int gridY;
     // Start is called before the first frame update
     void Start()
     {

@@ -13,13 +13,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        SpawnRuins();
-
         if (ruins.Count < 1)
         {
             Debug.LogError("ruins array is empty");
             return;
         }
+
+        if (ruinSpawnPoints.Count < 1)
+        {
+            Debug.LogError("ruinSpawnPoints array is empty");
+            return;
+        }
+
+        SpawnRuins();
 
     }
 
@@ -27,5 +33,24 @@ public class GameManager : MonoBehaviour
     private void SpawnRuins()
     {
         ruinSpawnPoints = ruinSpawnPoints.OrderBy(spawnPoint => Random.value).ToList();
+        
+        for(int i = 0; i < ruinsToSpawn; i++)
+        {
+            RuinScript tempRuin = ruins[Random.Range(0, ruins.Count)];
+
+            RuinSpawnPoint ruinSpawnPoint = ruinSpawnPoints.Find(k => k.isAvaliable);
+
+            if (!ruinSpawnPoint)
+            {
+                Debug.Log("No Ruin Spawn Points are avliable");
+                break;
+            }
+            
+            tempRuin = Instantiate(tempRuin, ruinSpawnPoint.transform);
+            tempRuin.GridX = ruinSpawnPoint.gridX;
+            tempRuin.GridY = ruinSpawnPoint.gridY;
+            ruinSpawnPoint.isAvaliable = false;
+
+        }
     }
 }

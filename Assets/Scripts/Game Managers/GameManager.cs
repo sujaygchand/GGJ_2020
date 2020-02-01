@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
             }
             
             tempRuin = Instantiate(tempRuin, ruinSpawnPoint.transform);
+            tempRuin.transform.localPosition = Vector3.zero;
             tempRuin.GridX = ruinSpawnPoint.gridX;
             tempRuin.GridY = ruinSpawnPoint.gridY;
             ruinSpawnPoint.isAvaliable = false;

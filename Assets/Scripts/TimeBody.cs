@@ -7,11 +7,11 @@ public class TimeBody : MonoBehaviour
     public bool isRewinding = false;
     public MeshCollider mesh;
 
-    List<PointInTime> pointsintime;
+    public List<PointInTime> pointsintime;
     public Rigidbody rb;
 
 
-
+    
     //BREAKS AUTOMATICALLY
     //
 

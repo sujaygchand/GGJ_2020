@@ -8,6 +8,9 @@ public class RuinSpawnPoint : MonoBehaviour
 
     public int gridX;
     public int gridY;
+
+    public int value = 1;
+
     // Start is called before the first frame update
     void Start()
     {

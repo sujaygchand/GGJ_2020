@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
+
+    public static string moveForward = "MoveForward_P";
+    public static string moveRight = "MoveRight_P";
+
     // Start is called before the first frame update
     CharacterController characterController;
     public float speed = 6.0f;
@@ -11,16 +15,32 @@ public class movement : MonoBehaviour
     public float gravity = 20.0f;
     //public Rigidbody moverthing;
     private Vector3 moveDirection = Vector3.zero;
+
+    private string moveForwardAxis;
+    private string moveRightAxis;
+
+    [Range(1,4)]
+    public int playerNum = 2;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+
+        moveForwardAxis = moveForward + playerNum;
+        moveRightAxis = moveRight + playerNum;
     }
 
     
     // Update is called once per frame
     void Update()
     {
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+        float moveForward = Input.GetAxis(moveForwardAxis);
+        float moveRight = Input.GetAxis(moveRightAxis);
+
+        if (moveForward == 0 && moveRight == 0)
+            return;
+
+        moveDirection = new Vector3(moveRight, 0.0f, moveForward);
+        Debug.Log(gameObject.name + " moveForwardAxis: " + moveForwardAxis);
         moveDirection *= speed;
         characterController.Move(moveDirection * Time.deltaTime);
     }

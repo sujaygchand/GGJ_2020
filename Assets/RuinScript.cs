@@ -103,7 +103,7 @@ public class RuinScript : MonoBehaviour
     }
 
 
-    public void ClaimRuin(String PlayerTag)
+    public void ClaimRuin(int playerNum)
     {
         if (BeingRebuilt == false)       //can only rebuild if not in the process of being rebuilt, if true give ability to destroy it
         {
@@ -112,24 +112,39 @@ public class RuinScript : MonoBehaviour
 
                 BeingRebuilt = true;        //triggers this bool, and stops anyone from building
 
-                if (PlayerTag == "Player 1")
+                switch (playerNum)
+                {
+                    case 1:
+                        player = Players.P1;
+                        break;
+                    case 2:
+                        player = Players.P2;
+                        break;
+                    case 3:
+                        player = Players.P3;
+                        break;
+                    case 4:
+                        player = Players.P4;
+                        break;
+                }
+/*                if (playerNum == "Player 1")
                 {
                     player = Players.P1;                   
                 }
 
-                if (PlayerTag == "Player 2")
+                if (playerNum == "Player 2")
                 {
                     player = Players.P2;
                 }
-                if (PlayerTag == "Player 3")
+                if (playerNum == "Player 3")
                 {
                     player = Players.P3;
                 }
-                if (PlayerTag == "Player 4")
+                if (playerNum == "Player 4")
                 {
                     player = Players.P4;
                 }
-
+*/
             }
         }
 
@@ -150,29 +165,12 @@ public class RuinScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player 1")
-        {
+        var player = other.GetComponent<movement>();
 
-            ClaimRuin("Player 1");
+        if (!player)
+            return;
 
-        }
-
-        if (other.gameObject.tag == "Player 2")
-        {
-            ClaimRuin("Player 2");
-
-        }
-
-        if (other.gameObject.tag == "Player 3")
-        {
-            ClaimRuin("Player 3");
-
-        }
-
-        if (other.gameObject.tag == "Player 4")
-        {
-            ClaimRuin("Player 4");
-        }
+        ClaimRuin(player.playerNum);
     }
 
    

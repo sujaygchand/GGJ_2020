@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) { 
+            OnGameFinished();
+            }
+    }
 
     private void SpawnPlayers()
     {
@@ -78,7 +85,18 @@ public class GameManager : MonoBehaviour
             tempRuin.GridX = ruinSpawnPoint.gridX;
             tempRuin.GridY = ruinSpawnPoint.gridY;
             ruinSpawnPoint.isAvaliable = false;
-
         }
+    }
+
+    private void OnGameFinished()
+    {
+        StartCoroutine(GoToEndGameScreen());
+    }
+
+    private IEnumerator GoToEndGameScreen()
+    {
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene(ApplicationData.EndGameScene);
     }
 }

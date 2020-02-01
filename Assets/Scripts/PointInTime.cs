@@ -10,4 +10,8 @@ public class PointInTime : MonoBehaviour
         position = _position;
         rotation = _rotation;
     }
+
+
+
+
 }

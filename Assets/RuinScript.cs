@@ -9,6 +9,11 @@ public class RuinScript : MonoBehaviour
     public float RebuildTime;
     float TotalReBuiltTime;
     bool BeingRebuilt;
+
+    public float DestructionTime;
+    float TotalDestructionTime;
+   // bool Destroy;
+
     public string PSP1;
     public string PSP2;
     public string PSP3;
@@ -35,20 +40,33 @@ public class RuinScript : MonoBehaviour
         }
         TotalReBuiltTime = RebuildTime;
 
+
+
+        if (DestructionTime == 0)
+        {
+            DestructionTime = 5;
+        }
+        TotalDestructionTime = DestructionTime;
+
+     //   Destroy = false;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        Rebuild();      // the function that looks at literally rebuilding the ruin 
+        Rebuild();                   // the function that looks at literally rebuilding the ruin 
+        DestroyBuilding();           // the function that looks at literally destroying buildings on the ruin 
 
     }
 
+  
     private void Rebuild()
     {
         if(BeingRebuilt==true)              //only triggers when someones interacted with the ruin
         {
+
+            //BUILD!!!!!!!!!!
             RebuildTime = RebuildTime - Time.deltaTime;
 
             if(RebuildTime<=0)
@@ -59,6 +77,31 @@ public class RuinScript : MonoBehaviour
         }
 
     }
+
+    private void DestroyBuilding()
+    {
+        if (BeingRebuilt == true)              //only triggers when someones interacted with the ruin
+        {
+
+            //DESTROY!!!!!!!!!!
+            if (player == Players.NONE)
+            {
+                DestructionTime = DestructionTime- Time.deltaTime;
+
+                if(DestructionTime<=0)
+                {
+                    BeingRebuilt = false;
+                    DestructionTime = TotalDestructionTime;         //resets the rebuild time
+
+
+                }
+
+
+            }
+
+        }
+    }
+
 
     public void ClaimRuin(String PlayerTag)
     {
@@ -89,13 +132,25 @@ public class RuinScript : MonoBehaviour
 
             }
         }
+
+        if (BeingRebuilt == true)       // if in the process of being rebuilt, give ability to destroy it
+        {
+            if (Input.GetButton(PSP1) || Input.GetButton(PSP2) || Input.GetButton(PSP3) || Input.GetButton(PSP4))      //X BUTTON
+            {
+
+                //DESTROY!!!!!!!!!!!!!
+
+                player = Players.NONE;
+                //Destroy = true;
+
+            }
+        }
+
     }
 
-
-
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "Player 1")
+        if (other.gameObject.tag == "Player 1")
         {
 
             ClaimRuin("Player 1");
@@ -119,6 +174,8 @@ public class RuinScript : MonoBehaviour
             ClaimRuin("Player 4");
         }
     }
+
+   
 
     private void OnCollisionExit(Collision collision)
     {

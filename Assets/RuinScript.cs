@@ -24,12 +24,12 @@ public class RuinScript : MonoBehaviour
 
     enum Players {P1, P2,P3,P4, NONE }
     Players player;
-
-    //players should stay until buildings rebuilt before moving
+    Players CurrentPlayer;
+    
     //players can build and break separately
 
 
-    
+
     void Start()
     {
         player = Players.NONE;
@@ -48,7 +48,6 @@ public class RuinScript : MonoBehaviour
         }
         TotalDestructionTime = DestructionTime;
 
-     //   Destroy = false;
     }
 
     // Update is called once per frame
@@ -68,11 +67,13 @@ public class RuinScript : MonoBehaviour
 
             //BUILD!!!!!!!!!!
             RebuildTime = RebuildTime - Time.deltaTime;
-
-            if(RebuildTime<=0)
+            Debug.Log("rebuilding");
+            if (RebuildTime<=0)
             {
                 BeingRebuilt = false;                   //once the rebuilt time is depleted, its false
                 RebuildTime = TotalReBuiltTime;         //resets the rebuild time
+
+                Debug.Log("REBUILT");
             }
         }
 
@@ -87,13 +88,13 @@ public class RuinScript : MonoBehaviour
             if (player == Players.NONE)
             {
                 DestructionTime = DestructionTime- Time.deltaTime;
-
-                if(DestructionTime<=0)
+                Debug.Log("destroying");
+                if (DestructionTime<=0)
                 {
                     BeingRebuilt = false;
                     DestructionTime = TotalDestructionTime;         //resets the rebuild time
 
-
+                    Debug.Log("DESTROYED");
                 }
 
 
@@ -105,9 +106,27 @@ public class RuinScript : MonoBehaviour
 
     public void ClaimRuin(int playerNum)
     {
+
+        if (BeingRebuilt == true )       // if in the process of being rebuilt, give ability to destroy it
+        {
+            if (player != CurrentPlayer)
+            {
+                if (Input.GetButton(PSP1) || Input.GetButton(PSP2) || Input.GetButton(PSP3) || Input.GetButton(PSP4))      //X BUTTON
+                {
+
+                    //DESTROY!!!!!!!!!!!!!
+
+                    player = Players.NONE;
+                   
+                }
+            }
+        }
+
+
+
         if (BeingRebuilt == false)       //can only rebuild if not in the process of being rebuilt, if true give ability to destroy it
         {
-            if (Input.GetButton(PSP1) || Input.GetButton(PSP2) || Input.GetButton(PSP3) || Input.GetButton(PSP4))      //X BUTTON
+            if (Input.GetButtonDown(PSP1) || Input.GetButtonDown(PSP2) || Input.GetButtonDown(PSP3) || Input.GetButtonDown(PSP4))      //X BUTTON
             {
 
                 BeingRebuilt = true;        //triggers this bool, and stops anyone from building
@@ -116,50 +135,26 @@ public class RuinScript : MonoBehaviour
                 {
                     case 1:
                         player = Players.P1;
+                        CurrentPlayer = player;
                         break;
                     case 2:
                         player = Players.P2;
+                        CurrentPlayer = player;
                         break;
                     case 3:
                         player = Players.P3;
+                        CurrentPlayer = player;
                         break;
                     case 4:
                         player = Players.P4;
+                        CurrentPlayer = player;
                         break;
                 }
-/*                if (playerNum == "Player 1")
-                {
-                    player = Players.P1;                   
-                }
-
-                if (playerNum == "Player 2")
-                {
-                    player = Players.P2;
-                }
-                if (playerNum == "Player 3")
-                {
-                    player = Players.P3;
-                }
-                if (playerNum == "Player 4")
-                {
-                    player = Players.P4;
-                }
-*/
+          
             }
         }
 
-        if (BeingRebuilt == true)       // if in the process of being rebuilt, give ability to destroy it
-        {
-            if (Input.GetButton(PSP1) || Input.GetButton(PSP2) || Input.GetButton(PSP3) || Input.GetButton(PSP4))      //X BUTTON
-            {
-
-                //DESTROY!!!!!!!!!!!!!
-
-                player = Players.NONE;
-                //Destroy = true;
-
-            }
-        }
+      
 
     }
 
@@ -173,15 +168,15 @@ public class RuinScript : MonoBehaviour
         ClaimRuin(player.playerNum);
     }
 
-   
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if(player == Players.P1)
-        { 
-            if(BeingRebuilt==true)
+        if (player == Players.P1)
+        {
+            if (BeingRebuilt == true)
             {
                 player = Players.NONE;
+                CurrentPlayer = player;
                 RebuildTime = TotalReBuiltTime;
                 BeingRebuilt = false;
             }
@@ -193,6 +188,7 @@ public class RuinScript : MonoBehaviour
             if (BeingRebuilt == true)
             {
                 player = Players.NONE;
+                CurrentPlayer = player;
                 RebuildTime = TotalReBuiltTime;
                 BeingRebuilt = false;
             }
@@ -203,6 +199,7 @@ public class RuinScript : MonoBehaviour
             if (BeingRebuilt == true)
             {
                 player = Players.NONE;
+                CurrentPlayer = player;
                 RebuildTime = TotalReBuiltTime;
                 BeingRebuilt = false;
             }
@@ -213,9 +210,12 @@ public class RuinScript : MonoBehaviour
             if (BeingRebuilt == true)
             {
                 player = Players.NONE;
+                CurrentPlayer = player;
                 RebuildTime = TotalReBuiltTime;
                 BeingRebuilt = false;
             }
         }
     }
+
+    
 }

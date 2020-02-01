@@ -26,16 +26,6 @@ public class PlayerSelect : MonoBehaviour
     {
         currentPlayers = dropdown.options[playerValue].text;
 
-
-/*        switch (playerValue)
-        {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-
-        }*/
+        ApplicationData.NumOfPlayers = Mathf.Clamp(playerValue + 2, 2, 4);
     }
 }

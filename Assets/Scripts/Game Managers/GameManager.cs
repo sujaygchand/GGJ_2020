@@ -5,14 +5,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
+    public Movement playerPrefab;
     public List<RuinScript> ruins;
     public List<RuinSpawnPoint> ruinSpawnPoints;
     public int ruinsToSpawn;
-
+    public List<PlayerSpawnPoints> playerSpawnPoints;
+    
     // Start is called before the first frame update
     void Awake()
     {
+        ruinSpawnPoints = FindObjectsOfType<RuinSpawnPoint>().ToList();
+
         if (ruins.Count < 1)
         {
             Debug.LogError("ruins array is empty");
@@ -25,8 +28,32 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        playerSpawnPoints = FindObjectsOfType<PlayerSpawnPoints>().ToList();
+
+        SpawnPlayers();
+
         SpawnRuins();
 
+    }
+
+
+    private void SpawnPlayers()
+    {
+        if (!playerPrefab)
+            Debug.LogError("PlayerPrefab is null");
+
+        if(playerSpawnPoints.Count < 3)
+            Debug.LogError("Missing a spawn point");
+
+        playerSpawnPoints = playerSpawnPoints.OrderBy(spawnPoint => Random.value).ToList();
+
+        int numOfPlayers = ApplicationData.NumOfPlayers;
+        for(int i = 0; i < numOfPlayers; i++)
+        {
+            var player = Instantiate(playerPrefab, playerSpawnPoints[i].transform);
+            player.transform.localPosition = Vector3.zero;
+            player.playerNum = i + 1; 
+        }
     }
 
     // Update is called once per frame

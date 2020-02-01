@@ -25,7 +25,7 @@ public class TimeBody : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {/*
         if (Input.GetKeyDown(KeyCode.Return))
         {
             StartRewind();
@@ -35,15 +35,17 @@ public class TimeBody : MonoBehaviour
         {
             StopRewind();
         }
+        */
     }
     void FixedUpdate()
-    {
+    {/*
         if (isRewinding)
         {
             Rewind();       //breaks;
         }
         else
             Record();
+        */
     }
     void Rewind()
     {

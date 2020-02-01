@@ -10,6 +10,8 @@ public class TimeBody : MonoBehaviour
     List<PointInTime> pointsintime;
     public Rigidbody rb;
 
+    public float recordTime = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +60,10 @@ public class TimeBody : MonoBehaviour
     }
     void Record()
     {
-
+        if (pointsintime.Count > recordTime * (1f / Time.fixedDeltaTime))
+        {
+            pointsintime.RemoveAt(pointsintime.Count - 1);
+        }
         pointsintime.Insert(0, new PointInTime(transform.position,transform.rotation));
     }
     public void StartRewind()

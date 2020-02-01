@@ -8,7 +8,7 @@ public class BuildingResetter : MonoBehaviour
     public Vector3 position;
     public float speed = 1;
     private float lerpValue = 0;
-
+    private float lerp;
     public List<GameObject> parts;
     public List<Vector3> positions;
     public List<Quaternion> rotation;
@@ -30,19 +30,26 @@ public class BuildingResetter : MonoBehaviour
     }
     public void rebuild()
     {
+        
         print("called");
         var i = 0;
         foreach (var item in parts)
         {
+            
             print(i);
             var Temp_Pos = item.transform.position;
-            transform.position = Vector3.Lerp(transform.position, positions[i], 1);
+            item.transform.position = Vector3.Lerp(transform.position, positions[i], 1);
 
             var Temp_Rot = item.transform.rotation;
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation[i], 1);
+            item.transform.rotation = Quaternion.Lerp(transform.rotation, rotation[i], 1);
             i++;
         }
     }
+
+   
+
+
+
 
 
     // Update is called once per frame
@@ -51,7 +58,7 @@ public class BuildingResetter : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             lerpValue += Time.deltaTime * speed;
-
+            
             rebuild();
             //transform.position = Vector3.Lerp(transform.position, position, lerpValue);
             //transform.rotation = Quaternion.Lerp(transform.rotation, rotateinit, lerpValue);

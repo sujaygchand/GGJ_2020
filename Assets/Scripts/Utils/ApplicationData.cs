@@ -7,7 +7,7 @@ public static class ApplicationData
     public static int NumOfPlayers = 4;
 
     public static string MainMenuScene = "Menu";
-    public static string GameScene = "2_GameScene";
+    public static string GameScene = "2_Game";
     public static string EndGameScene = "3_EndGame";
 
 

@@ -10,6 +10,11 @@ public class TimeBody : MonoBehaviour
     List<PointInTime> pointsintime;
     public Rigidbody rb;
 
+
+
+    //BREAKS AUTOMATICALLY
+    //
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +40,7 @@ public class TimeBody : MonoBehaviour
     {
         if (isRewinding)
         {
-            Rewind();
+            Rewind();       //breaks;
         }
         else
             Record();

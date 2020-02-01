@@ -164,7 +164,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 0
+    joyNum: 1
   - serializedVersion: 3
     m_Name: Vertical
     descriptiveName: 
@@ -180,7 +180,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 0
+    joyNum: 1
   - serializedVersion: 3
     m_Name: Fire1
     descriptiveName: 
@@ -369,7 +369,7 @@ InputManager:
     dead: 0.19
     sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
     axis: 1
     joyNum: 1
@@ -422,66 +422,66 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: PS4_Square_P3
+    m_Name: MoveForward_P3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: escape
+    positiveButton: 
     altNegativeButton: 
-    altPositiveButton: joystick button 1
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
-    joyNum: 0
+    type: 2
+    axis: 1
+    joyNum: 3
   - serializedVersion: 3
-    m_Name: PS4_Square_P3
+    m_Name: MoveRight_P3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: escape
+    positiveButton: 
     altNegativeButton: 
-    altPositiveButton: joystick button 1
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
     snap: 0
     invert: 0
-    type: 0
+    type: 2
     axis: 0
-    joyNum: 0
+    joyNum: 3
   - serializedVersion: 3
-    m_Name: PS4_Square_P3
+    m_Name: MoveForward_P4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: escape
+    positiveButton: 
     altNegativeButton: 
-    altPositiveButton: joystick button 1
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
-    joyNum: 0
+    type: 2
+    axis: 1
+    joyNum: 4
   - serializedVersion: 3
-    m_Name: PS4_Square_P3
+    m_Name: MoveRight_P4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: escape
+    positiveButton: 
     altNegativeButton: 
-    altPositiveButton: joystick button 1
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
     snap: 0
     invert: 0
-    type: 0
+    type: 2
     axis: 0
-    joyNum: 0
+    joyNum: 4

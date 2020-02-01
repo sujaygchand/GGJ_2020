@@ -20,10 +20,11 @@ public class movement : MonoBehaviour
     private string moveRightAxis;
 
     [Range(1,4)]
-    public int playerNum = 1;
+    public int playerNum = 2;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+
         moveForwardAxis = moveForward + playerNum;
         moveRightAxis = moveRight + playerNum;
     }
@@ -32,7 +33,14 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveDirection = new Vector3(Input.GetAxis(moveForwardAxis), 0.0f, Input.GetAxis(moveRightAxis));
+        float moveForward = Input.GetAxis(moveForwardAxis);
+        float moveRight = Input.GetAxis(moveRightAxis);
+
+        if (moveForward == 0 && moveRight == 0)
+            return;
+
+        moveDirection = new Vector3(moveRight, 0.0f, moveForward);
+        Debug.Log(gameObject.name + " moveForwardAxis: " + moveForwardAxis);
         moveDirection *= speed;
         characterController.Move(moveDirection * Time.deltaTime);
     }

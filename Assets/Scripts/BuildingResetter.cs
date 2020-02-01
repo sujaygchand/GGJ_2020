@@ -12,6 +12,9 @@ public class BuildingResetter : MonoBehaviour
     public List<GameObject> parts;
     public List<Vector3> positions;
     public List<Quaternion> rotation;
+
+    private bool built;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +49,18 @@ public class BuildingResetter : MonoBehaviour
         }
     }
 
-   
+    public void BuiltState()
+    {
+        if (built == true)
+        {
+            //pause all of the rigid bodies
+
+        }
+        else
+        {
+
+        }
+    }
 
 
 

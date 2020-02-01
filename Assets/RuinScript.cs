@@ -9,6 +9,11 @@ public class RuinScript : MonoBehaviour
     public float RebuildTime;
     float TotalReBuiltTime;
     bool BeingRebuilt;
+
+    public float DestructionTime;
+    float TotalDestructionTime;
+   // bool Destroy;
+
     public string PSP1;
     public string PSP2;
     public string PSP3;
@@ -35,20 +40,33 @@ public class RuinScript : MonoBehaviour
         }
         TotalReBuiltTime = RebuildTime;
 
+
+
+        if (DestructionTime == 0)
+        {
+            DestructionTime = 5;
+        }
+        TotalDestructionTime = DestructionTime;
+
+     //   Destroy = false;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        Rebuild();      // the function that looks at literally rebuilding the ruin 
+        Rebuild();                   // the function that looks at literally rebuilding the ruin 
+        DestroyBuilding();           // the function that looks at literally destroying buildings on the ruin 
 
     }
 
+  
     private void Rebuild()
     {
         if(BeingRebuilt==true)              //only triggers when someones interacted with the ruin
         {
+
+            //BUILD!!!!!!!!!!
             RebuildTime = RebuildTime - Time.deltaTime;
 
             if(RebuildTime<=0)
@@ -60,7 +78,32 @@ public class RuinScript : MonoBehaviour
 
     }
 
-    public void ClaimRuin(String PlayerTag)
+    private void DestroyBuilding()
+    {
+        if (BeingRebuilt == true)              //only triggers when someones interacted with the ruin
+        {
+
+            //DESTROY!!!!!!!!!!
+            if (player == Players.NONE)
+            {
+                DestructionTime = DestructionTime- Time.deltaTime;
+
+                if(DestructionTime<=0)
+                {
+                    BeingRebuilt = false;
+                    DestructionTime = TotalDestructionTime;         //resets the rebuild time
+
+
+                }
+
+
+            }
+
+        }
+    }
+
+
+    public void ClaimRuin(int playerNum)
     {
         if (BeingRebuilt == false)       //can only rebuild if not in the process of being rebuilt, if true give ability to destroy it
         {
@@ -69,56 +112,68 @@ public class RuinScript : MonoBehaviour
 
                 BeingRebuilt = true;        //triggers this bool, and stops anyone from building
 
-                if (PlayerTag == "Player 1")
+                switch (playerNum)
+                {
+                    case 1:
+                        player = Players.P1;
+                        break;
+                    case 2:
+                        player = Players.P2;
+                        break;
+                    case 3:
+                        player = Players.P3;
+                        break;
+                    case 4:
+                        player = Players.P4;
+                        break;
+                }
+/*                if (playerNum == "Player 1")
                 {
                     player = Players.P1;                   
                 }
 
-                if (PlayerTag == "Player 2")
+                if (playerNum == "Player 2")
                 {
                     player = Players.P2;
                 }
-                if (PlayerTag == "Player 3")
+                if (playerNum == "Player 3")
                 {
                     player = Players.P3;
                 }
-                if (PlayerTag == "Player 4")
+                if (playerNum == "Player 4")
                 {
                     player = Players.P4;
                 }
+*/
+            }
+        }
+
+        if (BeingRebuilt == true)       // if in the process of being rebuilt, give ability to destroy it
+        {
+            if (Input.GetButton(PSP1) || Input.GetButton(PSP2) || Input.GetButton(PSP3) || Input.GetButton(PSP4))      //X BUTTON
+            {
+
+                //DESTROY!!!!!!!!!!!!!
+
+                player = Players.NONE;
+                //Destroy = true;
 
             }
         }
+
     }
 
-
-
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "Player 1")
-        {
+        var player = other.GetComponent<Movement>();
 
-            ClaimRuin("Player 1");
+        if (!player)
+            return;
 
-        }
-
-        if (other.gameObject.tag == "Player 2")
-        {
-            ClaimRuin("Player 2");
-
-        }
-
-        if (other.gameObject.tag == "Player 3")
-        {
-            ClaimRuin("Player 3");
-
-        }
-
-        if (other.gameObject.tag == "Player 4")
-        {
-            ClaimRuin("Player 4");
-        }
+        ClaimRuin(player.playerNum);
     }
+
+   
 
     private void OnCollisionExit(Collision collision)
     {

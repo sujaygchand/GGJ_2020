@@ -40,7 +40,6 @@ public class Movement : MonoBehaviour
             return;
 
         moveDirection = new Vector3(moveRight, 0.0f, moveForward);
-        Debug.Log(gameObject.name + " moveForwardAxis: " + moveForwardAxis);
         moveDirection *= speed;
         characterController.Move(moveDirection * Time.deltaTime);
     }

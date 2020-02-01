@@ -39,8 +39,9 @@ public class Movement : MonoBehaviour
         if (moveForward == 0 && moveRight == 0)
             return;
 
-        moveDirection = new Vector3(moveRight, 0.0f, moveForward);
+        moveDirection = new Vector3(moveRight, 0.0f, moveForward * -1);
         moveDirection *= speed;
         characterController.Move(moveDirection * Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation(moveDirection);
     }
 }

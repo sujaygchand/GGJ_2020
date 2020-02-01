@@ -68,38 +68,12 @@ public class RuinScript : MonoBehaviour
         Rebuild();                   // the function that looks at literally rebuilding the ruin 
         DestroyBuilding();           // the function that looks at literally destroying buildings on the ruin 
        
-        
-        // TestingFunc();
-
 
     }
 
    
 
-    /*
-void TestingFunc()
-{
-   if (player == Players.P1)
-   {
-       CURRENT_PLAYER = 1;
-   }
-   if (player == Players.P2)
-   {
-       CURRENT_PLAYER = 2;
-   }
-   if (player == Players.P3)
-   {
-       CURRENT_PLAYER = 3;
-   }
-   if (player == Players.P4)
-   {
-       CURRENT_PLAYER = 4;
-   }
-   if (player == Players.NONE)
-   {
-       CURRENT_PLAYER = 0;
-   }
-}*/
+ 
     private void Rebuild()
     {
         if (BeingRebuilt == true && Housebuilt == false)              //only triggers when someones interacted with the ruin

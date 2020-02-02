@@ -71,6 +71,8 @@ public class RuinScript : MonoBehaviour
 
         Rebuild();                   // the function that looks at literally rebuilding the ruin 
         DestroyBuilding();           // the function that looks at literally destroying buildings on the ruin 
+
+
        
 
     }
@@ -143,6 +145,51 @@ public class RuinScript : MonoBehaviour
 
         if (BeingRebuilt == false)       //can only rebuild if not in the process of being rebuilt, if true give ability to destroy it
         {
+            if (playerNum == 1)
+            {
+                if (Input.GetButton(RuinScript.PSP1))      //X BUTTON
+                {
+                    BeingRebuilt = true;        //triggers this bool, and stops anyone from building
+                    player = Players.P1;
+                }
+            }
+
+
+            if (playerNum == 2)
+            {
+                if (Input.GetButton(RuinScript.PSP2))      //X BUTTON
+                {
+                    BeingRebuilt = true;        //triggers this bool, and stops anyone from building
+                    player = Players.P2;
+                }
+
+            }
+
+            if (playerNum == 3)
+            {
+                if (Input.GetButton(RuinScript.PSP3))      //X BUTTON
+                {
+
+                    BeingRebuilt = true;        //triggers this bool, and stops anyone from building
+                    player = Players.P3;
+                }
+
+            }
+
+
+            if (playerNum == 4)
+            {
+                if (Input.GetButton(RuinScript.PSP4))      //X BUTTON
+                {
+
+                    BeingRebuilt = true;        //triggers this bool, and stops anyone from building
+                    player = Players.P4;
+                }
+
+            }
+
+
+            /*
             if (Input.GetButtonDown(PSP1) || Input.GetButtonDown(PSP2) || Input.GetButtonDown(PSP3) || Input.GetButtonDown(PSP4))      //X BUTTON
             {
 
@@ -168,17 +215,100 @@ public class RuinScript : MonoBehaviour
                         break;
                 }
           
+            }*/
+        }
+
+
+
+
+
+
+        //DESTROYING!!!!!!!!!!!!!
+
+        if (playerNum == 1)
+        {
+            if (Input.GetButton(RuinScript.PSP1))      //X BUTTON
+            {
+                if (Housebuilt == true)
+                {
+                    BeingRebuilt = false;
+                }
+                if (BeingRebuilt == false)
+                {
+                    //DESTROY!!!!!!!!!!!!!
+                    if (player != CurrentPlayer)
+                    {
+                        player = Players.NONE;
+                        return;
+                    }
+                }
             }
         }
 
-       
+        if (playerNum == 2)
+        {
+            if (Input.GetButton(RuinScript.PSP2))      //X BUTTON
+            {
+                if (Housebuilt == true)
+                {
+                    BeingRebuilt = false;
+                }
+                if (BeingRebuilt == false)
+                {
+                    //DESTROY!!!!!!!!!!!!!
+                    if (player != CurrentPlayer)
+                    {
+                        player = Players.NONE;
+                        return;
+                    }
+                }
+            }
+        }
 
-        
-            
-                //if (Input.GetButton(PSP1Tear) || Input.GetButton(PSP2Tear) || Input.GetButton(PSP3Tear) || Input.GetButton(PSP4Tear))      //X BUTTON
+        if (playerNum == 3)
+        {
+            if (Input.GetButton(RuinScript.PSP3))      //X BUTTON
+            {
+                if (Housebuilt == true)
+                {
+                    BeingRebuilt = false;
+                }
+                if (BeingRebuilt == false)
+                {
+                    //DESTROY!!!!!!!!!!!!!
+                    if (player != CurrentPlayer)
+                    {
+                        player = Players.NONE;
+                        return;
+                    }
+                }
+            }
+        }
+        if (playerNum == 4)
+        {
+            if (Input.GetButton(RuinScript.PSP4))      //X BUTTON
+            {
+                if (Housebuilt == true)
+                {
+                    BeingRebuilt = false;
+                }
+                if (BeingRebuilt == false)
+                {
+                    //DESTROY!!!!!!!!!!!!!
+                    if (player != CurrentPlayer)
+                    {
+                        player = Players.NONE;
+                        return;
+                    }
+                }
+            }
+        }
 
-           if (Input.GetButtonDown(PSP1) || Input.GetButtonDown(PSP2) || Input.GetButtonDown(PSP3) || Input.GetButtonDown(PSP4))      //X BUTTON
-           {
+
+        //if (Input.GetButton(PSP1Tear) || Input.GetButton(PSP2Tear) || Input.GetButton(PSP3Tear) || Input.GetButton(PSP4Tear))      //X BUTTON
+        /*
+        if (Input.GetButtonDown(PSP1) || Input.GetButtonDown(PSP2) || Input.GetButtonDown(PSP3) || Input.GetButtonDown(PSP4))      //X BUTTON
+        {
                 if (Housebuilt == true)
                 {
                     BeingRebuilt = false;
@@ -192,7 +322,7 @@ public class RuinScript : MonoBehaviour
                          return;
                      }
                 }
-           }
+        }*/
 
     }
 

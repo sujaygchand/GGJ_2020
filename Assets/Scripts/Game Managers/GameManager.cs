@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnGameFinished()
+    public void OnGameFinished()
     {
         StartCoroutine(GoToEndGameScreen());
     }

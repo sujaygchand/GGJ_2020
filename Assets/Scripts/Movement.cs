@@ -26,11 +26,12 @@ public class Movement : MonoBehaviour
     public Animator Anim;
     [Range(1,4)]
     public int playerNum;
-
+    public bool isGameOver = false;
 
     bool Controller;
     void Start()
     {
+        isGameOver = false;
         camera = camera ?? Camera.main;
 
         characterController = GetComponent<CharacterController>();
@@ -59,7 +60,9 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isGameOver)
+            return;
+
         float moveForward = Input.GetAxis(moveForwardAxis);
         float moveRight = Input.GetAxis(moveRightAxis);
 

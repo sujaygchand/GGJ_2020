@@ -95,7 +95,15 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GoToEndGameScreen()
     {
-        yield return new WaitForSeconds(3f);
+
+        var players = FindObjectsOfType<Movement>();
+
+        foreach(var player in players)
+        {
+            player.isGameOver = true;
+        }
+
+        yield return new WaitForSeconds(7f);
 
         SceneManager.LoadScene(ApplicationData.EndGameScene);
     }

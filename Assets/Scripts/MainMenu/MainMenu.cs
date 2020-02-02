@@ -8,13 +8,26 @@ public class MainMenu : MonoBehaviour
 {
 
     public Button playButton;
-
+    public Button infoButton;
+    public Button backButton;
+    public Canvas main;
+    public Canvas info;
     void Awake()
     {
         if (!playButton)
-            Debug.LogError("playButton is not set");
+             Debug.LogError("playButton is not set");
 
         playButton.onClick.AddListener(() => SceneManager.LoadScene(ApplicationData.GameScene));
+
+        infoButton?.onClick.AddListener(() => InfoButtonPressed());
+        backButton?.onClick.AddListener(() => InfoButtonPressed(false));
     }
+
+    public void InfoButtonPressed(bool infoPressed = true)
+    {
+        main.enabled = !infoPressed;
+        info.enabled = infoPressed;
+    }
+
 
 }

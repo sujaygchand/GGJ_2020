@@ -28,6 +28,7 @@ public class RuinScript : MonoBehaviour
     public int GridX;
     public int GridY;
 
+    private ScoreManager scoreManager;
 
     public enum Players {P1, P2,P3,P4, NONE }
     Players player;
@@ -41,6 +42,8 @@ public class RuinScript : MonoBehaviour
 
     void Start()
     {
+        scoreManager = scoreManager ?? FindObjectOfType<ScoreManager>();
+
         player = Players.NONE;
         CurrentPlayer = Players.NONE;
 
@@ -95,6 +98,8 @@ public class RuinScript : MonoBehaviour
 
                 Housebuilt = true;
 
+                scoreManager?.CalculateScore();
+
             }
         }
 
@@ -112,7 +117,6 @@ public class RuinScript : MonoBehaviour
                 //building
                 House.transform.position = new Vector3(House.transform.position.x, House.transform.position.y - 0.005f, House.transform.position.z);
 
-                Debug.Log("destroying");
                 if (DestructionTime <= 0)
                 {
                     BeingRebuilt = false;
@@ -125,7 +129,8 @@ public class RuinScript : MonoBehaviour
                     //house has sunk underneath
                     House.transform.position = InitialHousePosition;
                     Housebuilt = false;
-                    Debug.Log("DESTROYED");
+
+                    scoreManager?.CalculateScore();
                 }
 
             }

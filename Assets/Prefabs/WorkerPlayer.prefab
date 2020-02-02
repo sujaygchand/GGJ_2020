@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 21882698179644108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.29097, y: 7.44, z: -2.068087}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3865519831940029261}
   - {fileID: 6656442306735272841}
@@ -107,6 +107,7 @@ MonoBehaviour:
   initialSpeed: 6
   jumpSpeed: 8
   gravity: 20
+  camera: {fileID: 0}
   Anim: {fileID: 8208233162365976775}
   playerNum: 2
 --- !u!114 &9021291246109960208

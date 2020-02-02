@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public List<RuinSpawnPoint> ruinSpawnPoints;
     public int ruinsToSpawn;
     public List<PlayerSpawnPoints> playerSpawnPoints;
+
+    private ScoreManager scoreManager;
     
     // Start is called before the first frame update
     void Awake()
@@ -28,6 +30,8 @@ public class GameManager : MonoBehaviour
             Debug.LogError("ruinSpawnPoints array is empty");
             return;
         }
+
+        scoreManager = FindObjectOfType<ScoreManager>();
 
         playerSpawnPoints = FindObjectsOfType<PlayerSpawnPoints>().ToList();
 
@@ -85,6 +89,7 @@ public class GameManager : MonoBehaviour
             tempRuin.GridX = ruinSpawnPoint.gridX;
             tempRuin.GridY = ruinSpawnPoint.gridY;
             ruinSpawnPoint.isAvaliable = false;
+            scoreManager.AddToBuildingsList(tempRuin);
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RuinSpawnPoint : MonoBehaviour
 {
-    public bool isAvaliable = true;
+    public bool isAvaliable {get; set; } = true;
 
     public int gridX;
     public int gridY;

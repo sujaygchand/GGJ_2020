@@ -65,10 +65,10 @@ MonoBehaviour:
     type: 3}
   House: {fileID: 3788494408118529261}
   baseMat: {fileID: 2100000, guid: 2dceccc2f23133347a53113edd4d247b, type: 2}
-  p1Mat: {fileID: 2100000, guid: cc03c35599ef7bc47b199d0dbeeb344d, type: 2}
-  p2Mat: {fileID: 2100000, guid: 3e0814d03e4d40a44b96f77510f8c18a, type: 2}
-  p3Mat: {fileID: 2100000, guid: daf2fd31c166f0d47a62c92c1175548a, type: 2}
-  p4Mat: {fileID: 2100000, guid: 1c89631fc9f482d4b9e23c5956e6c48a, type: 2}
+  p1Mat: {fileID: 2100000, guid: 3e0814d03e4d40a44b96f77510f8c18a, type: 2}
+  p2Mat: {fileID: 2100000, guid: cc03c35599ef7bc47b199d0dbeeb344d, type: 2}
+  p3Mat: {fileID: 2100000, guid: 1c89631fc9f482d4b9e23c5956e6c48a, type: 2}
+  p4Mat: {fileID: 2100000, guid: daf2fd31c166f0d47a62c92c1175548a, type: 2}
   houseRenders: []
   GridX: 0
   GridY: 0

@@ -7245,7 +7245,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c793797236f6fe74abefafd99623c552, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10234,7 +10234,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 806776666585218365, guid: 5de1365818477004dad24297e3d3e89d,
     type: 3}
   ruins:
-  - {fileID: 8631958431821044535, guid: 3a8698e7a32f0fa4bbea142f491e1e3f, type: 3}
+  - {fileID: 3670918467745991051, guid: 81f392d3ed125c544b2963e8c1eb5899, type: 3}
   ruinSpawnPoints: []
   ruinsToSpawn: 17
   playerSpawnPoints: []

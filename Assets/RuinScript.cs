@@ -87,7 +87,7 @@ public class RuinScript : MonoBehaviour
             RebuildTime = RebuildTime - Time.deltaTime;
 
             //building
-            House.transform.position = new Vector3(House.transform.position.x, House.transform.position.y + 0.004f, House.transform.position.z);
+            House.transform.position = new Vector3(House.transform.position.x, House.transform.position.y + 0.04f, House.transform.position.z);
 
             if (RebuildTime<=0)
             {
@@ -115,7 +115,7 @@ public class RuinScript : MonoBehaviour
                 DestructionTime = DestructionTime - Time.deltaTime;
 
                 //building
-                House.transform.position = new Vector3(House.transform.position.x, House.transform.position.y - 0.005f, House.transform.position.z);
+                House.transform.position = new Vector3(House.transform.position.x, House.transform.position.y - (0.005f/2), House.transform.position.z);
 
                 if (DestructionTime <= 0)
                 {

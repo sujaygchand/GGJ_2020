@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 5b85e4fb11dc7f846bd2984d6d28f1f4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: GeneraleMono
+  fontNames:
+  - GeneraleMono
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 35b56e5557f01a749a07e1ff8b1a08ca, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

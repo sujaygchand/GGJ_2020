@@ -357,8 +357,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032ee2af88732de45a438e4ac3b71684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
+  scoreText: {fileID: 0}
   playerNum: 4
+  score: 0
+  scoreManager: {fileID: 0}
 --- !u!1 &148291071
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,8 +671,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032ee2af88732de45a438e4ac3b71684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
+  scoreText: {fileID: 0}
   playerNum: 3
+  score: 0
+  scoreManager: {fileID: 0}
 --- !u!1001 &495188795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1400,8 +1404,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032ee2af88732de45a438e4ac3b71684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
+  scoreText: {fileID: 0}
   playerNum: 2
+  score: 0
+  scoreManager: {fileID: 0}
 --- !u!1001 &990518837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3661,8 +3667,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032ee2af88732de45a438e4ac3b71684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
+  scoreText: {fileID: 0}
   playerNum: 1
+  score: 0
+  scoreManager: {fileID: 0}
 --- !u!1001 &1973822653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4006,7 +4014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1378286467}
-  timeLimt: 120
+  timeLimt: 5
   currentTime: 0
   displayTime: 0
 --- !u!4 &2097218307

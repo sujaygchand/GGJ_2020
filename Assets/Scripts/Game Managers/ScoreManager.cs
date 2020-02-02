@@ -12,11 +12,11 @@ public class ScoreManager : MonoBehaviour
     public List<RuinScript> buildings = new List<RuinScript>();
 
 
-/*    private void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
             CalculateScore();
-    }*/
+    }
 
     public void AddToBuildingsList(RuinScript ruin)
     {

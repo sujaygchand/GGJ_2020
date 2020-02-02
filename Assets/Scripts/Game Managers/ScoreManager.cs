@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
 
         foreach (var item in buildings)
         {
-            switch (item.CurrentPlayer)
+            switch (item.owningPlayer)
             {
                 case RuinScript.Players.P1:
                     tempPlayer1Score++;

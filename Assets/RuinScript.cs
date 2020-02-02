@@ -17,8 +17,15 @@ public class RuinScript : MonoBehaviour
     public GameObject House;
   
 
-    bool Housebuilt; 
+    bool Housebuilt;
 
+    public Material baseMat;
+    public Material p1Mat;
+    public Material p2Mat;
+    public Material p3Mat;
+    public Material p4Mat;
+
+    public Renderer[] houseRenders;
 
     public static string PSP1 = "Interact_P1";
     public static string PSP2 = "Interact_P2";
@@ -35,17 +42,19 @@ public class RuinScript : MonoBehaviour
     public int CURRENT_PLAYER;
     Vector3 InitialHousePosition;
 
-    public Players CurrentPlayer;// { get; set; }
+    public Players owningPlayer;// { get; set; }
     
     //players can build and break separately
 
 
     void Start()
     {
+        houseRenders = House.GetComponentsInChildren<Renderer>();
+
         scoreManager = scoreManager ?? FindObjectOfType<ScoreManager>();
 
         player = Players.NONE;
-        CurrentPlayer = Players.NONE;
+        owningPlayer = Players.NONE;
 
         if (RebuildTime==0)
         {
@@ -71,14 +80,41 @@ public class RuinScript : MonoBehaviour
 
         Rebuild();                   // the function that looks at literally rebuilding the ruin 
         DestroyBuilding();           // the function that looks at literally destroying buildings on the ruin 
-
-
        
 
     }
 
    
+    private void ChangeMaterial(Players player)
+    {
+        
+        foreach (var rend in houseRenders)
+        {
+            switch (player)
+            {
+                case Players.NONE:
+                    rend.material = baseMat;
+                    break;
 
+                case Players.P1:
+                    rend.material = p1Mat;
+                    break;
+
+                case Players.P2:
+                    rend.material = p2Mat;
+                    break;
+
+                case Players.P3:
+                    rend.material = p3Mat;
+                    break;
+
+                case Players.P4:
+                    rend.material = p4Mat;
+                    break;
+            }
+
+        }
+    }
  
     private void Rebuild()
     {
@@ -96,10 +132,12 @@ public class RuinScript : MonoBehaviour
                 BeingRebuilt = false;                   //once the rebuilt time is depleted, its false
                 RebuildTime = TotalReBuiltTime;         //resets the rebuild time
 
-                CurrentPlayer = player;
+                owningPlayer = player;
 
                 Housebuilt = true;
 
+
+                ChangeMaterial(owningPlayer);
                 scoreManager?.CalculateScore();
 
             }
@@ -131,6 +169,8 @@ public class RuinScript : MonoBehaviour
                     //house has sunk underneath
                     House.transform.position = InitialHousePosition;
                     Housebuilt = false;
+
+                    ChangeMaterial(owningPlayer);
 
                     scoreManager?.CalculateScore();
                 }
@@ -236,7 +276,7 @@ public class RuinScript : MonoBehaviour
                 if (BeingRebuilt == false)
                 {
                     //DESTROY!!!!!!!!!!!!!
-                    if (player != CurrentPlayer)
+                    if (player != owningPlayer)
                     {
                         player = Players.NONE;
                         return;
@@ -256,7 +296,7 @@ public class RuinScript : MonoBehaviour
                 if (BeingRebuilt == false)
                 {
                     //DESTROY!!!!!!!!!!!!!
-                    if (player != CurrentPlayer)
+                    if (player != owningPlayer)
                     {
                         player = Players.NONE;
                         return;
@@ -276,7 +316,7 @@ public class RuinScript : MonoBehaviour
                 if (BeingRebuilt == false)
                 {
                     //DESTROY!!!!!!!!!!!!!
-                    if (player != CurrentPlayer)
+                    if (player != owningPlayer)
                     {
                         player = Players.NONE;
                         return;
@@ -295,7 +335,7 @@ public class RuinScript : MonoBehaviour
                 if (BeingRebuilt == false)
                 {
                     //DESTROY!!!!!!!!!!!!!
-                    if (player != CurrentPlayer)
+                    if (player != owningPlayer)
                     {
                         player = Players.NONE;
                         return;
@@ -344,7 +384,7 @@ public class RuinScript : MonoBehaviour
             if (BeingRebuilt == true)
             {
                 player = Players.NONE;
-                CurrentPlayer = player;
+                owningPlayer = player;
                 RebuildTime = TotalReBuiltTime;
                 BeingRebuilt = false;
 
@@ -364,7 +404,7 @@ public class RuinScript : MonoBehaviour
             if (BeingRebuilt == true)
             {
                 player = Players.NONE;
-                CurrentPlayer = player;
+                owningPlayer = player;
                 RebuildTime = TotalReBuiltTime;
                 BeingRebuilt = false;
 
@@ -384,7 +424,7 @@ public class RuinScript : MonoBehaviour
             if (BeingRebuilt == true)
             {
                 player = Players.NONE;
-                CurrentPlayer = player;
+                owningPlayer = player;
                 RebuildTime = TotalReBuiltTime;
                 BeingRebuilt = false;
 
@@ -404,7 +444,7 @@ public class RuinScript : MonoBehaviour
             if (BeingRebuilt == true)
             {
                 player = Players.NONE;
-                CurrentPlayer = player;
+                owningPlayer = player;
                 RebuildTime = TotalReBuiltTime;
                 BeingRebuilt = false;
 

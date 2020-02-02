@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
         {
             var player = Instantiate(playerPrefab, playerSpawnPoints[i].transform);
             player.transform.localPosition = Vector3.zero;
-            player.playerNum = i + 1; 
+            player.playerNum = i + 1;
+            player.IsGameOver = false;
         }
     }
 
@@ -100,7 +101,7 @@ public class GameManager : MonoBehaviour
 
         foreach(var player in players)
         {
-            player.isGameOver = true;
+            player.IsGameOver = true;
         }
 
         yield return new WaitForSeconds(7f);

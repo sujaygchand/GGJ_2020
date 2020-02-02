@@ -21,6 +21,8 @@ public class MainMenu : MonoBehaviour
 
         infoButton?.onClick.AddListener(() => InfoButtonPressed());
         backButton?.onClick.AddListener(() => InfoButtonPressed(false));
+
+        InfoButtonPressed(false);
     }
 
     public void InfoButtonPressed(bool infoPressed = true)

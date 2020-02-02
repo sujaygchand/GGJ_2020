@@ -144,7 +144,7 @@ public class RuinScript : MonoBehaviour
 
         if (BeingRebuilt == false)       //can only rebuild if not in the process of being rebuilt, if true give ability to destroy it
         {
-            if (Input.GetButton(PSP1Build) || Input.GetButton(PSP2Build) || Input.GetButton(PSP3Build) || Input.GetButton(PSP4Build))      //X BUTTON
+            if (Input.GetButton("PS4_Square_P1") || Input.GetButton("PS4_Square_P2") || Input.GetButton("PS4_Square_P3") || Input.GetButton("PS4_Square"))      //X BUTTON
             {
 
                 BeingRebuilt = true;        //triggers this bool, and stops anyone from building
@@ -179,7 +179,7 @@ public class RuinScript : MonoBehaviour
             
                 //if (Input.GetButton(PSP1Tear) || Input.GetButton(PSP2Tear) || Input.GetButton(PSP3Tear) || Input.GetButton(PSP4Tear))      //X BUTTON
 
-           if (Input.GetButton(PSP1Build) || Input.GetButton(PSP2Build) || Input.GetButton(PSP3Build) || Input.GetButton(PSP4Build))      //X BUTTON
+           if (Input.GetButton("PS4_Square_P1") || Input.GetButton("PS4_Square_P2") || Input.GetButton("PS4_Square_P3") || Input.GetButton("PS4_Square"))      //X BUTTON
            {
                 if (Housebuilt == true)
                 {

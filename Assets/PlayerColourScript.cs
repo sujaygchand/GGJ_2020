@@ -6,12 +6,12 @@ public class PlayerColourScript : MonoBehaviour
 {
 
     public Material[] PlayerLook;
-   
+  
     
     // Start is called before the first frame update
     void Start()
     {
-      int ColourNumber = GetComponent<Movement>().playerNum;
+      int ColourNumber = GetComponentInParent<Movement>().playerNum;
         if(ColourNumber==1)
         {
             GetComponent<Renderer>().material = PlayerLook[0];
@@ -28,6 +28,8 @@ public class PlayerColourScript : MonoBehaviour
         {
             GetComponent<Renderer>().material = PlayerLook[3];
         }
+
+
     }
 
     // Update is called once per frame

@@ -22,9 +22,9 @@ public class RuinScript : MonoBehaviour
     public int GridY;
 
 
-    enum Players {P1, P2,P3,P4, NONE }
+    public enum Players {P1, P2,P3,P4, NONE }
     Players player;
-    Players CurrentPlayer;
+    public Players CurrentPlayer;// { get; set; }
     
     //players can build and break separately
     
@@ -32,6 +32,7 @@ public class RuinScript : MonoBehaviour
     void Start()
     {
         player = Players.NONE;
+        CurrentPlayer = Players.NONE;
 
         if (RebuildTime==0)
         {

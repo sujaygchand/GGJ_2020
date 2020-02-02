@@ -41,12 +41,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) { 
-            OnGameFinished();
-            }
-    }
+
 
     private void SpawnPlayers()
     {
@@ -93,14 +88,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnGameFinished()
+    public void OnGameFinished()
     {
         StartCoroutine(GoToEndGameScreen());
     }
 
     private IEnumerator GoToEndGameScreen()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         SceneManager.LoadScene(ApplicationData.EndGameScene);
     }

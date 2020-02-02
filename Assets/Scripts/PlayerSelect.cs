@@ -7,7 +7,15 @@ public class PlayerSelect : MonoBehaviour
 {
     [SerializeField]
     private string currentPlayers;
-    public Dropdown dropdown; 
+    public Dropdown dropdown;
+
+    /*
+    private int foo;
+
+   public int Foo { 
+        get => foo; 
+        set => foo = Mathf.Clamp(value, 0, 4);
+    }*/
 
     void Awake()
     {
@@ -26,16 +34,6 @@ public class PlayerSelect : MonoBehaviour
     {
         currentPlayers = dropdown.options[playerValue].text;
 
-
-/*        switch (playerValue)
-        {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-
-        }*/
+        ApplicationData.NumOfPlayers = Mathf.Clamp(playerValue + 2, 2, 4);
     }
 }

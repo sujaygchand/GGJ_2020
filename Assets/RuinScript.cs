@@ -17,31 +17,32 @@ public class RuinScript : MonoBehaviour
     public GameObject House;
   
 
-    bool Housebuilt;
+    bool Housebuilt; 
 
-    public string PSP1Build;
-    public string PSP2Build;
-    public string PSP3Build;
-    public string PSP4Build;
 
- 
+    public static string PSP1 = "Interact_P1";
+    public static string PSP2 = "Interact_P2";
+    public static string PSP3 = "Interact_P3";
+    public static string PSP4 = "Interact_P4";
 
     public int GridX;
     public int GridY;
 
 
-    enum Players {P1, P2,P3,P4, NONE }
+    public enum Players {P1, P2,P3,P4, NONE }
     Players player;
-    Players CurrentPlayer;
     public int CURRENT_PLAYER;
     Vector3 InitialHousePosition;
-  
 
+    public Players CurrentPlayer;// { get; set; }
+    
+    //players can build and break separately
 
 
     void Start()
     {
         player = Players.NONE;
+        CurrentPlayer = Players.NONE;
 
         if (RebuildTime==0)
         {
@@ -85,7 +86,6 @@ public class RuinScript : MonoBehaviour
             //building
             House.transform.position = new Vector3(House.transform.position.x, House.transform.position.y + 0.004f, House.transform.position.z);
 
-            Debug.Log("rebuilding");
             if (RebuildTime<=0)
             {
                 BeingRebuilt = false;                   //once the rebuilt time is depleted, its false
@@ -94,7 +94,7 @@ public class RuinScript : MonoBehaviour
                 CurrentPlayer = player;
 
                 Housebuilt = true;
-                Debug.Log("REBUILT");
+
             }
         }
 
@@ -107,21 +107,18 @@ public class RuinScript : MonoBehaviour
             //DESTROY!!!!!!!!!!
             if (player == Players.NONE)
             {
-                DestructionTime = DestructionTime- Time.deltaTime;
+                DestructionTime = DestructionTime - Time.deltaTime;
 
                 //building
                 House.transform.position = new Vector3(House.transform.position.x, House.transform.position.y - 0.005f, House.transform.position.z);
 
                 Debug.Log("destroying");
-                if (DestructionTime<=0)
+                if (DestructionTime <= 0)
                 {
                     BeingRebuilt = false;
                     DestructionTime = TotalDestructionTime;         //resets the rebuild time
 
-                   GameObject p = Instantiate<GameObject>(Particles, transform.position, Quaternion.identity);
-
-                    
-                    
+                    GameObject p = Instantiate<GameObject>(Particles, transform.position, Quaternion.identity);
 
                     //Particles.Play();
 
@@ -139,12 +136,9 @@ public class RuinScript : MonoBehaviour
     public void ClaimRuin(int playerNum)
     {
 
-        
-
-
         if (BeingRebuilt == false)       //can only rebuild if not in the process of being rebuilt, if true give ability to destroy it
         {
-            if (Input.GetButton("PS4_Square_P1") || Input.GetButton("PS4_Square_P2") || Input.GetButton("PS4_Square_P3") || Input.GetButton("PS4_Square"))      //X BUTTON
+            if (Input.GetButtonDown(PSP1) || Input.GetButtonDown(PSP2) || Input.GetButtonDown(PSP3) || Input.GetButtonDown(PSP4))      //X BUTTON
             {
 
                 BeingRebuilt = true;        //triggers this bool, and stops anyone from building
@@ -153,7 +147,6 @@ public class RuinScript : MonoBehaviour
                 {
                     case 1:
                         player = Players.P1;
-                        
                     
                         break;
                     case 2:
@@ -179,7 +172,7 @@ public class RuinScript : MonoBehaviour
             
                 //if (Input.GetButton(PSP1Tear) || Input.GetButton(PSP2Tear) || Input.GetButton(PSP3Tear) || Input.GetButton(PSP4Tear))      //X BUTTON
 
-           if (Input.GetButton("PS4_Square_P1") || Input.GetButton("PS4_Square_P2") || Input.GetButton("PS4_Square_P3") || Input.GetButton("PS4_Square"))      //X BUTTON
+           if (Input.GetButtonDown(PSP1) || Input.GetButtonDown(PSP2) || Input.GetButtonDown(PSP3) || Input.GetButtonDown(PSP4))      //X BUTTON
            {
                 if (Housebuilt == true)
                 {
